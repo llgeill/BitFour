@@ -1,0 +1,58 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="" underline="true"/>
+                            <#input id="partTimeTitle" name="兼职标题" underline="true"/>
+                            <#input id="partTimeContent" name="兼职内容" underline="true"/>
+                            <#input id="partTimeType" name="兼职类型" underline="true"/>
+                            <#input id="recruiterNumber" name="兼职招聘人数" underline="true"/>
+                            <#input id="workType" name="工作种类 0 短招 1长招" underline="true"/>
+                            <#input id="workStartTime" name="工作开始时间" underline="true"/>
+                            <#input id="workEndTime" name="工作结束时间" underline="true"/>
+                            <#input id="workTimeRange" name="工作时间范围，一天可能有多个非连续时间段，用‘ ，’分割" underline="true"/>
+                            <#input id="genderRequirement" name="性别要求（1：男 2：女 3: 男+女）"/>
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="workWelfare" name="工作福利，每项福利用逗号分隔" underline="true"/>
+                            <#input id="workPlace" name="工作地点" underline="true"/>
+                            <#input id="settlementCycle" name="结算周期 1.日结 2.周结 3.月结 4.完工结" underline="true"/>
+                            <#input id="publishSchool" name="发布的学校对象" underline="true"/>
+                            <#input id="pubishId" name="发布者id" underline="true"/>
+                            <#input id="publishEmail" name="发布兼职者的个人邮箱" underline="true"/>
+                            <#input id="publishPhone" name="发布兼职者的电话号码" underline="true"/>
+                            <#input id="gmtCreate" name="数据创建时间" underline="true"/>
+                            <#input id="gmtModified" name="数据修改时间" underline="true"/>
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="PartTimeInfoDlg.addSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="PartTimeInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/spark/partTime/partTime_info.js"></script>
+<script>
+    laydate.render({
+        elem: '#workStartTime'
+    });
+    laydate.render({
+        elem: '#workEndTime'
+    });
+    laydate.render({
+        elem: '#gmtCreate'
+    });
+    laydate.render({
+        elem: '#gmtModified'
+    });
+</script>
+@}

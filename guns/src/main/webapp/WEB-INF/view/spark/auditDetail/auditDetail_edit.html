@@ -1,0 +1,31 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="" value="${item.id}" underline="true"/>
+                            <#input id="auditorId" name="审核人员id，也就是sys_user表的id" value="${item.auditorId}" underline="true"/>
+                            <#input id="content" name="审核回复内容" value="${item.content}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="sparkAuditId" name="spark_audit表的id，为父id" value="${item.sparkAuditId}" underline="true"/>
+                            <#input id="gmtCreate" name="数据创建时间" value="${item.gmtCreate}" underline="true"/>
+                            <#input id="gmtModified" name="数据修改时间" value="${item.gmtModified}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="AuditDetailInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="AuditDetailInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/spark/auditDetail/auditDetail_info.js"></script>
+@}

@@ -1,0 +1,30 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="" value="${item.id}" underline="true"/>
+                            <#input id="status" name="审核状态(1：待审核 2：再审核  3：已通过 4：未通过）" value="${item.status}" underline="true"/>
+                            <#input id="partTimeId" name="兼职信息id" value="${item.partTimeId}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="gmtCreate" name="数据创建时间" value="${item.gmtCreate}" underline="true"/>
+                            <#input id="gmtModified" name="数据修改时间" value="${item.gmtModified}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="AuditInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="AuditInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/spark/audit/audit_info.js"></script>
+@}

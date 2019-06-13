@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>申诉页面</title>
+    <link rel="shortcut icon" href="${ctxPath}/static/favicon.ico">
+    <link href="${ctxPath}/static/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">
+    <link href="${ctxPath}/static/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="${ctxPath}/static/css/style.css?v=4.1.0" rel="stylesheet">
+
+    <style type="text/css">
+
+        body {
+            font-size: 12px;
+            color: #333;
+            background: #fff url(/static/img/spark/bg.png) repeat;
+            font-family: '微软雅黑', '宋体';
+            line-height: 1;
+        }
+
+        .title {
+            border-bottom: 1px solid #ccc;
+            height: 120px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .title span {
+            float: left;
+            font: normal 12px/20px 'SimSun';
+            padding-top: 24px;
+            color: #666;
+        }
+
+        .footer {
+            width: 100%;
+            height: 30px;
+            padding: 10px 0;
+            background: #ff923a;
+            text-align: center;
+            position: fixed;
+            bottom:0;
+        }
+
+        #appealInfoForm {
+            height: auto;
+            margin-bottom: 30px;
+        }
+
+        .appeal_content span {
+            font-size: 14px;
+            margin-right: 20px;
+            margin-bottom: 10px;
+        }
+
+        #submit_btn {
+            text-align: center;
+        }
+
+        .ibox-content {
+            border: 1px solid #d5d5d5;
+            height: auto;
+            border-radius: 5px;
+        }
+
+        .btn {
+            padding: 15px 60px;
+            border: 1px solid;
+        }
+        .page-content{
+            clear:both;
+            border: 1px solid #d5d5d5;
+            height: auto;
+        }
+
+        .btn-outline-secondary:hover {
+            background-color: #a4cfff;
+        }
+        #appealInfoForm label em {
+            color: #f00;
+            padding-right: 10px;
+        }
+    </style>
+<script>
+window.onload= function () {
+    // 选项栏
+    var btn1 = document.getElementById('btn_option1');
+    var btn2 = document.getElementById('btn_option2');
+    var btn3 = document.getElementById('btn_option3');
+
+    btn1.addEventListener('click', function () {
+        document.getElementById("content1").style.display = "block";
+        document.getElementById("content2").style.display = "none";
+        document.getElementById("content3").style.display = "none";
+    })
+    btn2.addEventListener('click', function () {
+        document.getElementById("content1").style.display = "none";
+        document.getElementById("content2").style.display = "block";
+        document.getElementById("content3").style.display = "none";
+    })
+    btn3.addEventListener('click', function () {
+        document.getElementById("content1").style.display = "none";
+        document.getElementById("content2").style.display = "none";
+        document.getElementById("content3").style.display = "block";
+    })
+
+    var imgFile = null;
+    //将图片进行编码后发送到后台
+    function getBase64Image(img) {
+        var readImg = new FileReader();
+        readImg.readAsDataURL(img);
+        readImg.onload = function (readEvent){
+            var base64 = readEvent.target.result;
+            //console.log(base64);
+            $("#image").attr("src", base64);
+            $.ajax({
+                type:"post",
+                url:"sendBase",
+                data:{
+                    "bases":base64,
+                    "name":img.name
+                },
+                dataType:"json",
+                success:function(data){
+                    //alert(data);
+                    if(data == "1"){
+                        console.log("上传成功");
+                    }else{
+                        console.log("上传失败");
+                    }
+                }
+            });
+        };
+    }
+    //循环选择的图片
+    function changeImg() {
+        var read = new FileReader();
+        var allFiles = imgFile.files;
+        for(var i=0; i < allFiles.length; i++){
+            var file = allFiles[i];
+            getBase64Image(file);
+        }
+    }
+}
+</script>
+
+
+</head>
+<body>
+<div id="header">
+    <nav class="navbar navbar-default" style="background-color: #EAEAEA;font-size: 15px;">
+        <div class="container">
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li class="mouseHover" style="margin-left: 15px"><a href="#"><span
+                            style="color: red;font-weight: bold">广州</span>[切换城市]</a></li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/spark/index">首页</a></li>
+                    <li><a href="#">申请社区赞助</a></li>
+                    <li><a href="#">企业服务</a></li>
+                    <li><a href="/spark/register">注册</a></li>
+                    <li style="margin-right: 15px"><a href="/spark/login">登录</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<div class="container ibox-content">
+    <div class="ibox float-e-margins">
+        <div class="title">
+            <h1>巧兼职申诉平台</h1>
+            <span> 尊敬的用户您好，网址申诉正常受理时间为9:00-21:00，我们会尽快审核处理！</span>
+        </div>
+    </div>
+
+    <div class="ibox float-e-margins">
+        <div class="btn-group btn-group-toggle float-right mr-3" data-toggle="buttons">
+            <label class="btn btn-outline-secondary active" id="btn_option1">
+                <input id="option1" name="options" autocomplete="off" type="radio" value="wait_appeal">准备申诉
+            </label>
+            <label class="btn btn-outline-secondary" id="btn_option2">
+                <input id="option2" name="options" autocomplete="off" checked="checked" type="radio"
+                       value="appealing">正在申诉
+            </label>
+            <label class="btn btn-outline-secondary active" style="border-left:none;" id="btn_option3">
+                <input id="option3" name="options" autocomplete="off" type="radio" value="appeal_result">申诉结果
+            </label>
+        </div>
+    </div>
+
+    <div class="ibox float-e-margins" id="content1" style="display: block; position:relative;">
+        <div class="page-content p-md">
+           <div id="appealInfoForm">
+            <form class="form-horizontal" enctype="multipart/form-data" method="post">
+
+
+                <div class="form-group">
+                    <label for="inputTitle" class="col-sm-2 control-label"><em>*</em>申诉标题：</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" id="inputTitle" placeholder="请输入您的申诉标题">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="inputContent" class="col-sm-2 control-label"><em>*</em>申诉内容：</label>
+                    <div class="col-sm-10">
+                    <textarea class="form-control" id="inputContent" name="appealContent" rows="3"placeholder="请输入您的申诉内容">
+                    </textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="col-sm-2 control-label"><em>*</em>上传凭证</label>
+                    <div class="col-sm-10">
+                        <input type="file" onchange="show(this)" accept="image/gif,image/jpeg,image/png,image/jpg" id="upload" multiple="multiple">
+                        <script>
+                            function show(img) {
+                                imgFile = img;
+                                var allFiles = imgFile.files;
+                                for (var i = 0; i < allFiles.length; i++) {
+                                    var img = allFiles[i];
+                                    $("img").remove();
+                                    var readImg = new FileReader();
+                                    readImg.readAsDataURL(img);
+                                    readImg.onload = function (readEvent) {
+                                        var base64 = readEvent.target.result;
+                                        var appd = "<img src=\"" + base64 + "\" width=\"200px\" height=\"200px\">";
+                                        $("#image").append(appd);
+                                    };
+                                }
+                            }
+                        </script>
+                    </div>
+                </div>
+                <div id="image"></div>
+             </form>
+          </div>
+
+            <div id="submit_btn">
+                <button class="btn btn-primary" type="button" style="margin: 0 auto"
+                        onclick="changeImg()" value="上传">提交申诉
+                </button>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="ibox float-e-margins" id="content2" style="display: none; height: 600px;">
+        <div class="page-content p-md">
+            <div class="card">
+                <div class="card-header" style="margin-bottom: 15px;">申诉进度
+                    <small>持续更新中</small>
+                </div>
+                <div class="card-body">
+                    <div class="progress">
+                        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                             aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width: 75%"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="ibox float-e-margins" id="content3" style="display: none; height: 600px;">
+        <div class="page-content p-md">
+            <div>
+                <h1>恭喜恭喜，申诉成功~~</h1>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="footer">
+    Copyright©2018 巧兼职平台 jianzhi.com
+</div>
+
+
+
+<!-- 全局js -->
+<script src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
+<script src="${ctxPath}/static/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="${ctxPath}/static/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="${ctxPath}/static/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="${ctxPath}/static/js/plugins/layer/layer.js"></script>
+
+<!-- 自定义js -->
+<script src="${ctxPath}/static/js/hplus.js?v=4.1.0"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/contabs.js"></script>
+
+<!-- 第三方插件 -->
+<script src="${ctxPath}/static/js/plugins/pace/pace.min.js"></script>
+</body>
+</html>

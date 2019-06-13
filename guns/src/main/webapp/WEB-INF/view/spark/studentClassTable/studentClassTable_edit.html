@@ -1,0 +1,33 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="" value="${item.id}" underline="true"/>
+                            <#input id="monday" name="星期一" value="${item.monday}" underline="true"/>
+                            <#input id="tuesday" name="星期二" value="${item.tuesday}" underline="true"/>
+                            <#input id="wednesday" name="星期三" value="${item.wednesday}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="thursday" name="星期四" value="${item.thursday}" underline="true"/>
+                            <#input id="friday" name="星期五" value="${item.friday}" underline="true"/>
+                            <#input id="saturday" name="星期六" value="${item.saturday}" underline="true"/>
+                            <#input id="sunday" name="星期日" value="${item.sunday}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="StudentClassTableInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="StudentClassTableInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/spark/studentClassTable/studentClassTable_info.js"></script>
+@}

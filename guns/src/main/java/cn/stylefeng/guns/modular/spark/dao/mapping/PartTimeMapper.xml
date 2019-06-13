@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.stylefeng.guns.modular.spark.dao.PartTimeMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="cn.stylefeng.guns.modular.spark.model.PartTime">
+        <id column="id" property="id" />
+        <result column="part_time_title" property="partTimeTitle" />
+        <result column="part_time_content" property="partTimeContent" />
+        <result column="part_time_type" property="partTimeType" />
+        <result column="recruiter_number" property="recruiterNumber" />
+        <result column="work_type" property="workType" />
+        <result column="work_start_time" property="workStartTime" />
+        <result column="work_end_time" property="workEndTime" />
+        <result column="work_time_range" property="workTimeRange" />
+        <result column="gender_requirement" property="genderRequirement" />
+        <result column="work_welfare" property="workWelfare" />
+        <result column="work_place" property="workPlace" />
+        <result column="settlement_cycle" property="settlementCycle" />
+        <result column="publish_school" property="publishSchool" />
+        <result column="pubish_id" property="pubishId" />
+        <result column="publish_email" property="publishEmail" />
+        <result column="publish_phone" property="publishPhone" />
+        <result column="gmt_create" property="gmtCreate" />
+        <result column="gmt_modified" property="gmtModified" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, part_time_title, part_time_content, part_time_type, recruiter_number, work_type, work_start_time, work_end_time, work_time_range, gender_requirement, work_welfare, work_place, settlement_cycle, publish_school, pubish_id, publish_email, publish_phone, gmt_create, gmt_modified
+    </sql>
+
+    <select id="getAuditPartTime" resultMap="BaseResultMap">
+        select spark_part_time.* from spark_part_time,spark_audit WHERE spark_audit.part_time_id=spark_part_time.id and spark_audit.`status`=3
+    </select>
+
+</mapper>

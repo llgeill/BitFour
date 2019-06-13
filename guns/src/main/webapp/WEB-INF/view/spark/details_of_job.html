@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="${ctxPath}/static/css/spark/job_detail.css">
+    <title>DetailsOfJob</title>
+    <link href="${ctxPath}/static/css/animate.css" rel="stylesheet">
+    <link href="${ctxPath}/static/css/plugins/sweetalert/sweetalert.css" rel="stylesheet">
+</head>
+
+<body>
+
+<header class="header">
+    <nav class="navigation_box">
+        <div class="logo_wrap">
+            <a  href="#" class="logo"><img style="height: 35px;width: 100px;" src="/static/img/spark/9999.png" alt="兼职logo"></a>
+        </div>
+        <div class="me">
+            <a target="_blank" href="#">关于我们</a>
+            <a target="_blank" href="#">加入我们</a>
+            <a target="_blank" href="#">企业推广</a>
+            <a target="_blank" href="#">帮助中心</a>
+        </div>
+
+        <div class="channel_box">
+            <a rel="nofollow" href="/spark/index">首页</a>
+            <a rel="nofollow" href="#">申请社团赞助</a>
+            <a rel="nofollow" href="/spark/login" class="selected">登录</a>
+        </div>
+    </nav>
+
+</header>
+
+<section class="container">
+    <article class="w_main">
+
+        <div class="content_box clearfix">
+            <div class="p_left">
+                <div class="m-crumb">
+                    <a href="/">广州兼职</a> <i class="icon-angle-right"></i>&nbsp;>&nbsp;
+                    <a href="/dbx_qita_0/">广州其他</a> <i class="icon-angle-right"></i>
+                    <span> > ${partTime.partTimeTitle}</span>
+                </div>
+
+                    <div class="content_wrap">
+                    <div class="job_header">
+                        <h1 class="job_title">${partTime.partTimeTitle}</h1>
+                        <p class="info"></p>
+                        <div class="job_base"><span class="job_price">${partTime.workSalary}/天</span>
+                            | <a class="job_type"  href="/dbx_qita_0/"  target="blank">其他</a>
+                            | <span class="job_publish">发布时间： ${gmtCreate}</span>
+                        </div>
+
+                        <div class="apply_wrap" >
+                            <div class="btn_theme" id="go_to_apply" onclick="enroll()" >报名兼职</div>
+                            <div class="apply_box">
+                                <p>微信扫码快速报名<br>
+                                及时反馈录用情况</p>
+                                <div class="qrcode" id="qrcode"></div>
+                            </div>
+                        </div>
+                        <div class="apply_mask" id="applyMask">
+                        </div>
+                    </div>
+
+
+                    <div class="job_content">
+                        <ul class="job_list">
+                            <li><span class="tit">招聘人数: </span><span class="con">${partTime.recruiterNumber}</span></li>
+                            <li><span class="tit">工作开始时间: </span><span class="con">${workStartTime}</span></li>
+                            <li><span class="tit">工作结束时间: </span><span class="con">${workEndTime}</span></li>
+                            <li><span class="tit">工作地点: </span><span class="con">${partTime.workPlace}</span></li>
+                        </ul>
+
+                        <ul class="job_list">
+                            <li><span class="tit">工作种类: </span><span class="con">${workType}</span></li>
+                            <li><span class="tit">工作范围: </span><span class="con">${partTime.workTimeRange}</span></li>
+                            <li><span class="tit">上班时段: </span><span class="con">报名后通知的工作范围</span></li>
+                        </ul>
+
+                        <ul class="job_list" >
+                            <li><span class="tit">结算方式: </span><span class="con">${settlementCycle}</span></li>
+                            <li><span class="tit">基本工资: </span><span class="con">${partTime.workSalary}</span></li>
+                        </ul>
+
+                        <div class="box">
+                            <div class="detail_title">工作详情</div>
+                            <div class="detail" id="job_detail"><br/><br/>
+								【工作介绍】<br/>&nbsp;&nbsp;&nbsp;&nbsp;${partTime.partTimeContent}<br/><br/>
+                                【工作时间范围】<br/>&nbsp;&nbsp;&nbsp;&nbsp;${partTime.workTimeRange}<br/><br/>
+								【性别要求】<br/>&nbsp;&nbsp;&nbsp;&nbsp;${genderRequirement}<br/><br/>
+                                【工作福利】<br/>&nbsp;&nbsp;&nbsp;&nbsp;${partTime.workWelfare}<br/><br/>
+                            </div>
+                        </div>
+
+                        <div class="box">
+                            <ul>
+                                <li class="orange">提示: 凡收取费用，需缴纳押金的企业均有欺诈嫌疑，请您警惕！</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- 20170207 你可能感兴趣的兼职start -->
+
+                <div class="m-tab_about">
+                    <div class="tab_tit">
+                        <ul class="clearfix">
+                            <li class="cur"><span>你可能感兴趣的兼职</span></li>
+                            <a href="#" class="read_more">查看更多</a>
+                        </ul>
+                    </div>
+
+                    <div class="tab_con">
+                        <ul class="like_job">
+                            <li class="">
+                                <a href="#" target="blank"><h2>海珠区招聘专员可实习</h2></a>
+                                <p><span class="theme_color">8000元/月</span>
+                                    | <span class="link_text">文员</span> | 发布时间：2018-10-26</p>
+                            </li>
+
+                            <li class="">
+                                <a href="#" target="blank"><h2>20名招聘专员</h2></a>
+                                <p><span class="theme_color">5000元/月</span>
+                                    | <span class="link_text">调研</span> | 发布时间：2018-11-15</p>
+                            </li>
+
+                            <li class="">
+                                <a href="#" target="blank"><h2>兼职交通协管员</h2></a>
+                                <p><span class="theme_color">16元/小时</span>
+                                    | <span class="link_text">临时工</span> | 发布时间：2018-11-07</p>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div>
+
+                <!-- 20170207 你可能感兴趣的兼职end -->
+            </div>
+            <div class="p_right">     
+				<div class="app_wrap">
+					<a class="app-download" target="_blank" href="https://mp.weixin.qq.com/s?__biz=MzIwNzA5NjUxOQ==&mid=2650996961&idx=1&sn=cfcf4a890784274bb820317027601d8e&scene=1&srcid=0809HGZJq2BJ6FlZUx8qj7Os&key=8dcebf9e179c9f3a56e9c3f4ede428c30b12573c6c9b779bc4124b819f85275cab1ce55d06e220890b672f138e6dd2d7&ascene=0&uin=M" rel="nofollow" >
+						<img src="../../../static/img/spark/alert.jpg" width="280" alt="兼职防骗指南">
+					</a>
+				</div>
+                <div class="ad_box" id="ad_box" style="display:none;">
+                    <div class="ad_box_imgs" id="ad_box_imgs">
+                        <a rel="nofollow" target="_blank" class="selected">
+                            <img alt="ad loading"></a>
+                    </div>
+                    <div class="ad_box_btns" id="ad_box_btns">
+                        <a class="selected"></a>
+                    </div>
+                </div>
+
+                <div class="content_ad_box">
+
+                    <div class="p1">兼职推荐</div>
+
+                    <div class="p2"  style="display:none;">
+                        想提高招聘效果，发兼职？<a rel="nofollow" href="#">马上发布</a>
+                    </div>
+
+                    <ul class="p3">
+                        <li>
+                            <div class="ttl"><a href="#" target="_blank">明天上班广州雕塑公园美团 </a></div>
+                            <div class="cnt">
+                                <p><span class="theme_color"> 100元/次</span>
+                                    | <span class="link_text"> 其他</span> | 越秀</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="ttl"><a href="#" target="_blank">广州欧时力童装双11客服 </a></div>
+                            <div class="cnt">
+                                <p><span class="theme_color"> 18.3元/小时</span>
+                                    | <span class="link_text"> 其他</span> | 天河</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <div class="ttl"><a href="#" target="_blank">电信长期兼职(非销售) </a></div>
+                            <div class="cnt">
+                                <p><span class="theme_color"> 20元/小时</span>
+                                    | <span class="link_text"> 其他</span> | 海珠</p>
+                            </div>
+                        </li>
+                        <!--等等-->
+                    </ul>
+                    <a id="more_recommend" class="more_job">查看更多</a>
+                </div>
+
+            </div>
+        </div>
+
+    </article>
+
+    <!--20150817 新增 详情页 底部链接和版权  -->
+    <div class="container_footer">
+        <div class="link_block">
+            <div>
+                <h5 >更多类型：</h5>
+                <p>
+
+                    <a target="blank" href="#">广州调研兼职</a>
+
+                    <a target="blank" href="#">广州安保兼职</a>
+
+                    <a target="blank" href="#">广州校内兼职</a>
+
+                    <a target="blank" href="#">广州实习兼职</a>
+
+                </p>
+            </div>
+        </div>
+        <div class="link_block">
+            <div>
+                <h5 >其他地区：</h5>
+                <p>
+                    <a href="#"  target="blank">花都兼职</a>
+
+                    <a href="#"  target="blank">萝岗兼职</a>
+
+                    <a href="#"  target="blank">越秀兼职</a>
+
+                    <a href="#"  target="blank">增城兼职</a>
+
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+<footer class="footer">
+	<div class="footer1">                  
+		<p class="cp_right"> Copyright©2018 巧兼职平台 jianzhi.com</p>
+	</div>
+</footer>
+
+</section>
+<!-- 全局js -->
+<script src="${ctxPath}/static/js/jquery.min.js?v=2.1.4"></script>
+<script src="${ctxPath}/static/js/bootstrap.min.js?v=3.3.6"></script>
+<script src="${ctxPath}/static/js/plugins/metisMenu/jquery.metisMenu.js"></script>
+<script src="${ctxPath}/static/js/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="${ctxPath}/static/js/plugins/layer/layer.js"></script>
+<script src="${ctxPath}/static/js/plugins/validate/bootstrapValidator.min.js"></script>
+<script src="${ctxPath}/static/js/plugins/laydate/laydate.js"></script>
+
+<!-- 自定义js -->
+<script src="${ctxPath}/static/js/hplus.js?v=4.1.0"></script>
+<script type="text/javascript" src="${ctxPath}/static/js/contabs.js"></script>
+<script src="${ctxPath}/static/js/common/Feng.js"></script>
+
+<!-- 第三方插件 -->
+<script src="${ctxPath}/static/js/plugins/pace/pace.min.js"></script>
+<script src="${ctxPath}/static/js/plugins/sweetalert/sweetalert.min.js"></script>
+<script>
+    var count=true;
+    function enroll() {
+        if(count){
+            swal({
+                title: "兼职报名成功",
+                text: "兼职报名成功后需要等待商家审核！",
+                type: "success",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                confirmButtonText: "回到首页",
+                closeOnConfirm: false
+            }, function () {
+                // swal("删除成功！", "您已经永久删除了这条信息。", "success");
+                window.location="/spark/index";
+            });
+            count=false;
+        }else{
+            swal("报名失败！", "您已经成功报名，切勿重复提交！", "error");
+        }
+    }
+
+</script>
+</body>
+
+</html>

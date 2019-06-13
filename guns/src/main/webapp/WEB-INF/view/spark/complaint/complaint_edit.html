@@ -1,0 +1,41 @@
+@layout("/common/_container.html"){
+<div class="ibox float-e-margins">
+    <div class="ibox-content">
+        <div class="form-horizontal">
+
+            <div class="row">
+                <div class="col-sm-6 b-r">
+                            <#input id="id" name="" value="${item.id}" underline="true"/>
+                            <#input id="title" name="申诉标题" value="${item.title}" underline="true"/>
+                            <#input id="content" name="申诉内容" value="${item.content}" underline="true"/>
+                            <#input id="voucher" name="申诉凭证（图片），最多9张，保存的地址用逗号隔开" value="${item.voucher}" />
+                </div>
+
+                <div class="col-sm-6">
+                            <#input id="status" name="1 未处理 2 正在处理 3已处理" value="${item.status}" underline="true"/>
+                            <#input id="complainantsId" name="申诉发起者的id" value="${item.complainantsId}" underline="true"/>
+                            <#input id="gmtCreate" name="数据创建时间" value="${item.gmtCreate}" underline="true"/>
+                            <#input id="gmtModified" name="数据修改时间" value="${item.gmtModified}" />
+                </div>
+            </div>
+
+            <div class="row btn-group-m-t">
+                <div class="col-sm-10">
+                    <#button btnCss="info" name="提交" id="ensure" icon="fa-check" clickFun="ComplaintInfoDlg.editSubmit()"/>
+                    <#button btnCss="danger" name="取消" id="cancel" icon="fa-eraser" clickFun="ComplaintInfoDlg.close()"/>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+<script src="${ctxPath}/static/modular/spark/complaint/complaint_info.js"></script>
+<script>
+    laydate.render({
+        elem: '#gmtCreate'
+    });
+    laydate.render({
+        elem: '#gmtModified'
+    });
+</script>
+@}
